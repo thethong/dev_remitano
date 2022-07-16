@@ -22,6 +22,16 @@ class JWT {
       return null;
     }
   }
+
+  async verifyToken (token, secretKey) {
+    try {
+      const verify = util.promisify(jsonwebtoken.verify).bind(jsonwebtoken);
+      return await verify(token, secretKey);
+    } catch (error) {
+      console.log(`Error in verify access token:  + ${error}`);
+      return null;
+    }
+  }
 }
 
 export default JWT;

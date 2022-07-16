@@ -7,7 +7,7 @@ class UserModel {
    async getUserByUserName (userName) {
     try {
       const params = [userName]
-      const sql = `SELECT user_name, password, refresh_token FROM user WHERE user_name = ?`
+      const sql = `SELECT id, user_name, password FROM user WHERE user_name = ?`
 
       const query = util.promisify(db.query).bind(db);
       const rs = await query(sql, params);

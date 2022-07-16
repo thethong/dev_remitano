@@ -1,0 +1,11 @@
+extends ./layout
+
+block content
+  append head 
+    script(type='text/javascript' src='/js/share.js')
+
+  div
+    .mb-3
+      label.form-label(for='inputUrl') Youtube Url
+      input#inputUrl.form-control(type='text')
+    button#btnShare.btn.btn-primary(type='button') Share
