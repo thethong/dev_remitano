@@ -1,0 +1,33 @@
+{
+  "name": "dev_remitano",
+  "version": "1.0.0",
+  "description": "project backend for interview",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon ./src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thethong/dev_remitano.git"
+  },
+  "author": "Tran The Thong",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thethong/dev_remitano/issues"
+  },
+  "homepage": "https://github.com/thethong/dev_remitano#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.20.0",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "jsonwebtoken": "^8.5.1",
+    "mysql2": "^2.3.3",
+    "path": "^0.12.7",
+    "pug": "^3.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}
