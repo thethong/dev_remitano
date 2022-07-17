@@ -59,6 +59,7 @@ async function loginOrRegister() {
     $("#lblUserName").html(result.user_name);
   } catch (error) {
     console.error(error);
+    alert("ERROR -- " + error.responseJSON.error_message)
   }
 }
 

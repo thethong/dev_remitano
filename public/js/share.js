@@ -25,5 +25,6 @@ async function addShareMovie() {
     alert(`Share movie success.`);
   } catch (error) {
     console.error(error);
+    alert("ERROR -- " + error.responseJSON.error_message)
   }
 }
