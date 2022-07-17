@@ -2,10 +2,18 @@ extends ./layout
 
 block content
   append head 
+    //- created css js for share page
+    link(rel='stylesheet' href='/css/share.css')
     script(type='text/javascript' src='/js/share.js')
 
-  div
-    .mb-3
-      label.form-label(for='inputUrl') Youtube Url
-      input#inputUrl.form-control(type='text')
-    button#btnShare.btn.btn-primary(type='button') Share
+  .row.pt-5
+    .col-md-4 
+    .col-md-4
+
+      .row.mt-3
+        fieldset.border.p-2
+          legend.float-none.w-auto.p-2.text-primary Share a Youtube movie
+          label.form-label(for='inputUrl') Youtube Url:
+          input#inputUrl.form-control(type='text')
+          button#btnShare.mt-3.btn.btn-primary(type='button') Share
+    .col-md-4 
