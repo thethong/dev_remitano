@@ -1,7 +1,11 @@
-/* #cntLoginRegister {
-  display: none;
+hr {
+  display: block;
+  border-style: inset;
+  border-width: 2px;
+  width: 70%
 }
 
-#cntLogined {
-  display: none;
-} */
+.house-icon {
+  font-size: 48px;
+  color: green
+}

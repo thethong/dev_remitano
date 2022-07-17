@@ -2,10 +2,8 @@ extends ./layout
 
 block content
   append head 
+    link(rel='stylesheet' href='/css/home.css')
     script(type='text/javascript' src='/js/home.js')
 
   .content
-    .container-fluid
-      .row.mt-2
-        .col-md-6.float-start
-          h4.m-0.text-dark.text-muted HOME
+    #ctn-list-shared.container-fluid

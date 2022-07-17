@@ -1,30 +1,28 @@
 $(document).ready(function () {
   $("#btnShare").click(function () {
-    addShareMovie()
+    addShareMovie();
   });
-})
+});
 
 async function addShareMovie() {
-  const baseUrl = window.location.origin
-  const rowData = { 
-    user_name: $.cookie('user_name'),     // user name login from cookie
-    url: $("#inputUrl").val()
-  }
+  const baseUrl = window.location.origin;
+  const rowData = {
+    user_name: $.cookie("user_name"), // user name login from cookie
+    url: $("#inputUrl").val(),
+  };
 
-  const headerData = { x_authorization: $.cookie('access_token') }
+  const headerData = { x_authorization: $.cookie("access_token") };
 
   try {
     const result = await $.ajax({
-      url: baseUrl + `/share/share-movie`,
-      type: 'POST',
-      dataType: 'json',
+      url: baseUrl + `/v1/share/share-movie`,
+      type: "POST",
+      dataType: "json",
       data: rowData,
-      headers: headerData
+      headers: headerData,
     });
 
-    alert(`Share movie success.`)
-
-    
+    alert(`Share movie success.`);
   } catch (error) {
     console.error(error);
   }

@@ -19,23 +19,19 @@ app.use(express.static('views'))
 app.set("view engine", "pug");
 app.set('views','./views');
 
-// Route to Homepage
-// app.get('/', (req, res) => {
-
-//   res.sendfile("views/home.html");
-// });
-
+// Route to Home page
 app.get('/', (req, res) => {
   res.render('home');
 });
 
+// Route to Share page
 app.get('/share', (req, res) => {
   res.render('share');
 });
 
-// Routing
-app.use("/auth", authRouter);
-app.use("/share", shareRouter);
+// Routing API
+app.use("/v1/auth", authRouter);
+app.use("/v1/share", shareRouter);
 
 // start server use promise
 const PORT = process.env.PORT || 8080;
