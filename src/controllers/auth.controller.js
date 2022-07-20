@@ -1,8 +1,20 @@
 import bcrypt from "bcrypt";
 import UserModel from "../models/user.model.js";
 import JWT from "../libs/jwt.js";
+import responseStatus from "../variables/response-status.js";
+import util from "util";
 
+/**
+ * API: Authentication Controller
+ */
 class AuthController {
+
+  /**
+   * Login or Register using for route API
+   * @param {Object} req - Request object
+   * @param {Object} res - Response object
+   * @returns {Promise<*>} - json result return for client
+   */
   async loginOrRegister(req, res) {
     try {
       const userName = req.body.user_name;
@@ -19,8 +31,11 @@ class AuthController {
           rsUser[0].password
         );
         if (!isPasswordValid) {
-          return res.status(401).json({
-            error_message: `Input wrong password for user: ${userName}`,
+          return res.status(responseStatus.http.unauthorized.status).json({
+            error_message: util.format(
+              responseStatus.http.unauthorized.wrong_password.error_message,
+              userName
+            ),
           });
         }
       } else {
@@ -46,7 +61,7 @@ class AuthController {
         user_name: userName,
       };
 
-      // jwt
+      // jwt object
       const jwt = new JWT();
 
       // generate access_token
@@ -57,17 +72,21 @@ class AuthController {
       );
 
       if (!accessToken) {
-        return res.status(401).json({
-          error_message: "Access Token can not generate.",
+        return res.status(responseStatus.http.unauthorized.status).json({
+          error_message: responseStatus.http.unauthorized.generate_token.error_message,
         });
       }
 
-      // all ok
+      // all success
       return res.status(201).json({
         user_name: userName,
         access_token: accessToken,
       });
-    } catch (err) {}
+    } catch (err) {
+      return res.status(responseStatus.http.internal_server.status).json({
+        error_message: responseStatus.http.internal_server.error_message,
+      });
+    }
   }
 }
 

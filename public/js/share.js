@@ -4,6 +4,10 @@ $(document).ready(function () {
   });
 });
 
+/**
+ * add url youtube share function
+ * @returns {Void} - 
+ */
 async function addShareMovie() {
   const baseUrl = window.location.origin;
   const rowData = {
@@ -14,6 +18,7 @@ async function addShareMovie() {
   const headerData = { x_authorization: $.cookie("access_token") };
 
   try {
+    // request share a movie to server
     const result = await $.ajax({
       url: baseUrl + `/v1/share/share-movie`,
       type: "POST",
@@ -25,6 +30,6 @@ async function addShareMovie() {
     alert(`Share movie success.`);
   } catch (error) {
     console.error(error);
-    alert("ERROR -- " + error.responseJSON.error_message)
+    alert("ERROR -- " + error.responseJSON.error_message);
   }
 }

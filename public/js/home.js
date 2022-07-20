@@ -1,12 +1,18 @@
 $(document).ready(function () {
+  // get list share movie from server
   getListSharedMovie();
 });
 
+/**
+ * get list share movie from server
+ * @returns {Void} - 
+ */
 async function getListSharedMovie() {
   // url base
   const baseUrl = window.location.origin;
 
   try {
+    // send request API
     const result = await $.ajax({
       url: baseUrl + `/v1/share/list-all-shared-movie`,
       type: "GET",
@@ -15,6 +21,7 @@ async function getListSharedMovie() {
 
     const listShared = result.data;
 
+    // create iframe for youtube share movie
     var tag = document.createElement("script");
     tag.src = "https://www.youtube.com/iframe_api";
     var firstScriptTag = document.getElementsByTagName("script")[0];

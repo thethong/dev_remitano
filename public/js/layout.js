@@ -9,7 +9,9 @@ $(document).ready(function () {
     $("#cntLogined").hide();
   }
 
+  // click login or register button
   $("#btnLoginRegister").click(function () {
+    // request login or register to server
     loginOrRegister();
   });
 
@@ -27,12 +29,17 @@ $(document).ready(function () {
     window.location.href = baseUrl + `/`;
   });
 
+  // click share movie
   $("#btnShareMovie").click(function () {
     const baseUrl = window.location.origin;
     window.location.href = baseUrl + `/share`;
   });
 });
 
+/**
+ * login or register user function
+ * @returns {Void} - 
+ */
 async function loginOrRegister() {
   // url
   const baseUrl = window.location.origin;
@@ -42,6 +49,7 @@ async function loginOrRegister() {
   };
 
   try {
+    // request API login or register
     result = await $.ajax({
       url: baseUrl + `/v1/auth/login-register`,
       type: "POST",
@@ -50,19 +58,22 @@ async function loginOrRegister() {
     });
 
     // save info to cookie
-    $.cookie("user_name", result.user_name, { expires: 7 });
-    $.cookie("access_token", result.access_token, { expires: 7 });
-    // alert($.cookie('user_name'))
+    $.cookie("user_name", result.user_name, { expires: 1 });
+    $.cookie("access_token", result.access_token, { expires: 1 });
 
     $("#cntLoginRegister").hide();
     $("#cntLogined").show();
     $("#lblUserName").html(result.user_name);
   } catch (error) {
     console.error(error);
-    alert("ERROR -- " + error.responseJSON.error_message)
+    alert("ERROR -- " + error.responseJSON.error_message);
   }
 }
 
+/**
+ * check is logined
+ * @returns {boolean} - true: is login/ false is not logined
+ */
 function isLogined() {
   if ($.cookie("user_name") && $.cookie("access_token")) {
     return true;
